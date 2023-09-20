@@ -28,6 +28,7 @@ const RegisterPage = () => {
   const { registerUser } = useContext(AuthContext);
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const destination = router.query.p?.toString() || "/";
 
   const {
     register,
@@ -126,7 +127,7 @@ const RegisterPage = () => {
               </Button>
             </Grid>
             <Grid item xs={12} display={"flex"} justifyContent={"end"}>
-              <NextLink href={"/auth/login"} passHref legacyBehavior>
+              <NextLink href={`/auth/login?p=${destination}`} passHref legacyBehavior>
                 <Link underline="always">¿Ya tienes cuenta?</Link>
               </NextLink>
             </Grid>

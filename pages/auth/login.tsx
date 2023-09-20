@@ -26,6 +26,7 @@ type FormData = {
 const LoginPage = () => {
   const router = useRouter();
   const { logginUser } = useContext(AuthContext);
+  const destination = router.query.p?.toString() || "/";
 
   const {
     register,
@@ -42,11 +43,12 @@ const LoginPage = () => {
     if (!isValidLogin) {
       setShowError(true);
       setTimeout(() => setShowError(false), 3000);
+      return;
     }
 
-    // TODO navegar a la pantalla que el usuario estaba
-    router.replace("/");
-  };
+    // TODO navegar a la pantalla que el usuario estaba    
+    router.replace(destination);
+  };  
 
   return (
     <AuthLayout title={"Ingresar"} description={""}>
@@ -108,7 +110,7 @@ const LoginPage = () => {
               </Button>
             </Grid>
             <Grid item xs={12} display={"flex"} justifyContent={"end"}>
-              <NextLink href={"/auth/register"} passHref legacyBehavior>
+              <NextLink href={`/auth/register?p=${destination}`} passHref legacyBehavior>
                 <Link underline="always">¿No tienes cuenta?</Link>
               </NextLink>
             </Grid>
