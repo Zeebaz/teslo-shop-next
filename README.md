@@ -5,6 +5,7 @@
     1. template with > MONGO_URL = mongo_url
     2. MONGO_URL = mongodb://localhost:27017/teslodb
     3. NEXT_PUBLIC_TAX_RATE=TAX_VALUE
+    4. JWT_SECRET_SEED = ESt@ESSssLasedmillaz?--@1346
 3. `docker-compose.yaml`
     1. Copy this
     

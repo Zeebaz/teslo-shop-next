@@ -1,4 +1,4 @@
-import { UiContext } from "@/context";
+import { CartContext, UiContext } from "@/context";
 import {
   ClearOutlined,
   SearchOutlined,
@@ -24,6 +24,7 @@ export const Navbar = () => {
   const name = usePathname();
 
   const router = useRouter();
+  const { numberOfItems } = useContext(CartContext);
   const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
   const [searchTerm, setsearchTerm] = useState("");
   const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -78,7 +79,7 @@ export const Navbar = () => {
         {/* Pantallas grandes */}
         {isSearchVisible ? (
           <Input
-          sx={{ display: { xs: "none", sm: "flex" } }}
+            sx={{ display: { xs: "none", sm: "flex" } }}
             autoFocus
             value={searchTerm}
             onChange={(e) => setsearchTerm(e.target.value)}
@@ -114,7 +115,10 @@ export const Navbar = () => {
         <NextLink href="/cart" passHref legacyBehavior>
           <Link>
             <IconButton>
-              <Badge badgeContent={2} color="secondary">
+              <Badge
+                badgeContent={numberOfItems > 9 ? "+9" : numberOfItems}
+                color="secondary"
+              >
                 <ShoppingCartOutlined />
               </Badge>
             </IconButton>
